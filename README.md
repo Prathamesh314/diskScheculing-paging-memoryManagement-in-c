@@ -1,5 +1,5 @@
 # diskScheculing-paging-memoryManagement-in-c
-### This Repository contains codes for First Fit memory management, Optimal Paging policy and First Come First Serve Disk Scheduling alorithms
+### This Repository contains codes for Memory Management, Paging policy and Disk Scheduling alorithms
 
 
 #  Theory
