@@ -36,11 +36,15 @@ int main(){
             count[arr[i]] = 1;
         }
         else{
+            int visited[n+1];
+            for(int i=0;i<=n;i++){
+                visited[i] = 0;
+            }
             if(count[arr[i]] == 0){
                 miss+=1;
                 int c=0,found,flag=0;
                 for(int j=i;j<n;j++){
-                    if (count[arr[j]] == 1)
+                    if (count[arr[j]] == 1 && !visited[arr[j]])
                     {
                         /* code */
                         if(c==size-1){
@@ -49,11 +53,23 @@ int main(){
                             break;
                         }
                         c++;
+                        visited[arr[j]] = 1;
                     }
                     
                 }
                 if(flag==0){
-                    found = arr[n-1];
+                    if(c==2){
+                        for(int k=0;k<n;k++){
+                            if(count[arr[k]] == 1 && visited[arr[k]] == 0){
+                                found = arr[k];
+                                break;
+                            }
+                        }
+                    }
+                    else{
+                        found = table[size-1];    
+                    }
+                    
                 }
                 for(int j=0;j<size;j++){
                     if(table[j] == found){
