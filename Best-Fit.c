@@ -1,11 +1,11 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-typedef struct FirstFit
+typedef struct BestFit
 {
     /* data */
     int data;
-    struct FirstFit* next;
+    struct BestFit* next;
 }ListNode;
 
 ListNode* initialize(int data){
