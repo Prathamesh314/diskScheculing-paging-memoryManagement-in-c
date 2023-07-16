@@ -2,7 +2,7 @@
 #include<stdlib.h>
 
 int main(){
-    int n,size,page;
+    int n,size,page,tab = 0,hit = 0,miss = 0;
     
     printf("Enter Total number of pages:- ");
     scanf("%d",&n);
@@ -14,7 +14,6 @@ int main(){
     }
     int arr[n];
     int table[size];
-    int tab = 0;
     for(int i=0;i<n;i++){
         printf("Enter page number:- ");
         scanf("%d",&page);
@@ -25,8 +24,6 @@ int main(){
         table[i] = -1;
     }
 
-    int hit = 0;
-    int miss = 0;
     
     for(int i=0;i<n;i++){
         if(tab < size){
