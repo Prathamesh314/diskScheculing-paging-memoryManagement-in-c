@@ -36,11 +36,12 @@ int main(){
             count[arr[i]] = 1;
         }
         else{
-            int visited[n+1];
-            for(int i=0;i<=n;i++){
-                visited[i] = 0;
-            }
+            
             if(count[arr[i]] == 0){
+                int visited[n+1];
+                for(int i=0;i<=n;i++){
+                    visited[i] = 0;
+                }
                 miss+=1;
                 int c=0,found,flag=0;
                 for(int j=i;j<n;j++){
