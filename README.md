@@ -2,9 +2,9 @@
 This Repository contains codes for First Fit memory management, Optimal Paging policy and First Come First Serve Disk Scheduling alorithms
 
 
-####  Theory
+#  Theory
 
-##### Disk Scheduling Algorithms
+## Disk Scheduling Algorithms
 
 Disk scheduling algorithms are algorithms used by operating systems to determine the order in which disk I/O requests are serviced by a hard disk drive. The goal of these algorithms is to optimize the disk access and minimize the disk seek time, which is the time taken by the disk's read/write head to move to the desired location on the disk.
 
@@ -24,7 +24,7 @@ Here are some commonly used disk scheduling algorithms:
 
 These are just a few examples of disk scheduling algorithms. The choice of algorithm depends on various factors, such as the workload characteristics, the disk drive's physical properties, and the specific performance requirements of the system.
 
-##### Paging
+## Paging
 
 Page replacement policies are algorithms used in operating systems to determine which page(s) should be evicted from memory when a page fault occurs and new pages need to be loaded. These policies aim to minimize the number of page faults and optimize memory utilization. Here are some commonly used page replacement policies:
 
@@ -34,7 +34,7 @@ FIFO (First-In-First-Out): The FIFO algorithm replaces the page that has been in
 
 LRU (Least Recently Used): The LRU algorithm replaces the page that has not been accessed for the longest time. It requires maintaining a record of the order in which pages were last accessed. When a page fault occurs, the page that was least recently used is evicted. LRU is effective in capturing temporal locality but can be computationally 
 
-###### Memory Management Algorithms
+## Memory Management Algorithms
 
 Memory management algorithms are techniques used by operating systems to efficiently allocate and manage memory resources in a computer system. These algorithms ensure that processes have the required memory space for execution and optimize memory utilization. Here are some commonly used memory management algorithms
 
