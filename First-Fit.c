@@ -1,114 +1,90 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-typedef struct FirstFit
-{
-    /* data */
-    int data;
-    struct FirstFit* next;
-}ListNode;
-
-ListNode* initialize(int data){
-    ListNode* newnode = (ListNode* )malloc(sizeof(ListNode));
-    newnode->data = data;
-    newnode->next = NULL;
-}
-
-ListNode *append(ListNode *head,int data){
-    ListNode* newnode = initialize(data);
-
-    if(head==NULL){
-        return newnode;
-    }
-    ListNode* temp = head;
-    while(temp->next != NULL){
-        temp=temp->next;
-    }
-    temp->next = newnode;
-    return head;
-}
-
-void display(ListNode *head){
-    ListNode *temp = head;
-    while(temp->next){
-        printf("%d->",temp->data);
-        temp=temp->next;
-    }
-    printf("%d\n",temp->data);
-}
-
-
-
-int main()
-{
-    int n,p=0,data,choice;
-    ListNode* head = NULL;
-    ListNode* notMarked = NULL;
-    printf("Enter number of blocks:- ");
+int main(){
+    int n,size,page,tab = 0,hit = 0,miss = 0;
+    
+    printf("Enter Total number of pages:- ");
     scanf("%d",&n);
+    printf("Enter size of frame:- ");
+    scanf("%d",&size);
+    int count[n+1];
+    for(int i=0;i<=n;i++){
+        count[i] = 0;
+    }
     int arr[n];
-    printf("Time to take size of each block....\n");
+    int table[size];
     for(int i=0;i<n;i++){
-        printf("Enter memory size of block %d:- ",i+1);
-        scanf("%d",&arr[i]);
-    }
-    printf("\n");
-    printf("Time to take size of each process coming in....\n");
-    while(1){
-        printf("Enter size of process %d:- ",p+1);
-        scanf("%d",&data);
-        p++;
-        head = append(head,data);
-        printf("Do you want to add more process [1/0]:- ");
-        scanf("%d",&choice);
-        if(choice == 0){
-            break;
-        }
+        printf("Enter page number:- ");
+        scanf("%d",&page);
+        arr[i] = page;
     }
 
-    ListNode *temp = head;
-    int marked[n];
-    int If[n];
-    for(int i=0;i<n;i++){
-        marked[i] = 0;
-    }
-    int travel = 0,process=1;
-    while(temp){
-        int flag = 0;
-        for(int i=0;i<n;i++){
-            if(arr[i] > temp->data && marked[i] == 0){
-                arr[i] -= temp->data;
-                marked[i] = 1;
-                flag = 1;
-                break;
-            }
-        }
-        if(flag==0){
-            notMarked = append(notMarked,process);
-        }
-        temp = temp->next;
-        process++;
+    for(int i=0;i<size;i++){
+        table[i] = -1;
     }
 
-    int internalFrag = 0;
-    int externalFrag = 0;
+    
     for(int i=0;i<n;i++){
-        if(marked[i]){
-            internalFrag+=arr[i];
+        if(tab < size){
+            miss+=1;
+            table[tab] = arr[i];
+            tab = tab+1;
+            count[arr[i]] = 1;
         }
         else{
-            externalFrag+=arr[i];
+            
+            if(count[arr[i]] == 0){
+                int visited[n+1];
+                for(int i=0;i<=n;i++){
+                    visited[i] = 0;
+                }
+                miss+=1;
+                int c=0,found,flag=0;
+                for(int j=i;j<n;j++){
+                    if (count[arr[j]] == 1 && !visited[arr[j]])
+                    {
+                        /* code */
+                        if(c==size-1){
+                            found = arr[j];
+                            flag = 1;
+                            break;
+                        }
+                        c++;
+                        visited[arr[j]] = 1;
+                    }
+                    
+                }
+                if(flag==0){
+                    if(c==2){
+                        for(int k=0;k<n;k++){
+                            if(count[arr[k]] == 1 && visited[arr[k]] == 0){
+                                found = arr[k];
+                                break;
+                            }
+                        }
+                    }
+                    else{
+                        found = table[size-1];    
+                    }
+                    
+                }
+                for(int j=0;j<size;j++){
+                    if(table[j] == found){
+                        count[arr[i]] = 1;
+                        count[found] = 0;
+                        table[j] = arr[i];
+                        break;
+                    }
+                }
+            }
+            else{
+                hit+=1;
+            }
         }
     }
-
-    printf("\nTotal Internal Fragmentation :- %d\n",internalFrag);
-    printf("\nTotal External Fragmentation :- %d\n",externalFrag);
-    
-    printf("\nTotal Processes....\n");
-    display(head);
-    printf("\nProcesses that are not allocated...\n");
-    display(notMarked);
-    
-    return 0;
+    // miss = n-hit;
+    printf("Total hit :- %d\n",hit);
+    printf("Total Miss :- %d\n",miss);
 
 }
