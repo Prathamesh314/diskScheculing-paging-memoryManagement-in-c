@@ -66,6 +66,7 @@ int main(){
                     }
                         else if(c==size){
                             continue;
+                        }
                     else{
                         found = table[size-1];    
                     }
