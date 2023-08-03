@@ -56,7 +56,7 @@ int main(){
                     
                 }
                 if(flag==0){
-                    if(c==2){
+                    if(c==size-1){
                         for(int k=0;k<n;k++){
                             if(count[arr[k]] == 1 && visited[arr[k]] == 0){
                                 found = arr[k];
@@ -64,6 +64,8 @@ int main(){
                             }
                         }
                     }
+                        else if(c==size){
+                            continue;
                     else{
                         found = table[size-1];    
                     }
